@@ -53,4 +53,14 @@ for ((i = 0; i <= max_index; i++)); do
   echo "Setting of $setting_file is completed.\n"
 done
 
+if [ $OS == 'Mac' ]; then
+  echo "brew update.\n"
+  brew update
+  echo "brew install coreutils.\n"
+  brew uninstall coreutils
+  brew install coreutils
+  brew unlink coreutils && brew link --force coreutils
+  echo "coreutils is completed.\n"
+fi
+
 echo "Please execute 'source ~/.bashrc'"
