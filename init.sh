@@ -16,7 +16,7 @@ else
   exit 1
 fi
 
-timestamp=$(date '+%Y%m%d_%s')
+backup_suffix='bk'
 script_dir=$(cd $(dirname $0); pwd)
 
 home_file_paths=(~/.vimrc ~/.bashrc ~/.gitconfig)
@@ -27,14 +27,14 @@ for ((i = 0; i <= max_index; i++)); do
   home_file_path=${home_file_paths[i]}
   script_file_path=${script_file_paths[i]}
 
-  backup $home_file_path $timestamp
+  backup $home_file_path $backup_suffix
   cp -rf ${script_file_path} ~/
 
   echo "Setting of $home_file_path is completed.\n"
 done
 
 mkdir -p ~/.vim/bundle
-backup ~/.vim/bundle/neobundle $timestamp
+backup ~/.vim/bundle/neobundle $backup_suffix
 git clone https://github.com/shougo/neobundle.vim ~/.vim/bundle/neobundle
 echo "neobundle download is complete.\n"
 
@@ -48,7 +48,7 @@ setting_file_urls=(\
 for ((i = 0; i <= max_index; i++)); do
   setting_file=${setting_files[i]}
   setting_file_url=${setting_file_urls[i]}
-  backup $setting_file $timestamp
+  backup $setting_file $backup_suffix
   curl -s $setting_file_url > $setting_file
   echo "Setting of $setting_file is completed.\n"
 done

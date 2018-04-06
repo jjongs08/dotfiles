@@ -25,6 +25,7 @@ call neobundle#begin()
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'cocopon/iceberg.vim'
 NeoBundle 'jimsei/winresizer.git'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'grep.vim'
@@ -82,7 +83,7 @@ nnoremap <C-n> gt
 nnoremap <C-p> gT 
 
 """ color
-if &term =~ "xterm-256color" || &term =~ "screen-256color"
+if &term =~ "xterm-256color" || &term =~ "screen-256color" || &term == "xterm"
   set t_Co=256
   set t_Sf=[3%dm
   set t_Sb=[4%dm
@@ -96,16 +97,16 @@ elseif &term =~ "xterm-color"
   set t_Sb=[4%dm
 endif
 
-""" colorscheme molokai
-colorscheme jellybeans
+" enable syntax highlighting
+syntax enable
+
+"""colorscheme molokai
+"""colorscheme jellybeans
+colorscheme iceberg
 
 """indent
 set tabstop=2
 set autoindent
 set expandtab
 set shiftwidth=2
-
-" enable syntax highlighting
-syntax enable
-
 set nu
