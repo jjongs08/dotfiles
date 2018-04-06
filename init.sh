@@ -56,11 +56,21 @@ done
 if [ $OS == 'Mac' ]; then
   echo "brew update.\n"
   brew update
-  echo "brew install coreutils.\n"
-  brew uninstall coreutils
-  brew install coreutils
-  brew unlink coreutils && brew link --force coreutils
-  echo "coreutils is completed.\n"
+  if [ `brew ls --versions coreutils > /dev/null` ]; then
+    echo "brew install coreutils.\n"
+    brew install coreutils
+    brew unlink coreutils && brew link --force coreutils
+    echo "coreutils is completed.\n"
+  fi
+
+  if [ `brew ls --versions ricty > /dev/null` ]; then
+    echo "brew install ricty.\n"
+    brew tap sanemat/font
+    brew install ricty
+    cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
+    fc-cache -vf
+    echo "ricty is completed.\n"
+  fi
 fi
 
 echo "Please execute 'source ~/.bashrc'"
