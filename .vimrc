@@ -109,4 +109,13 @@ set tabstop=2
 set autoindent
 set expandtab
 set shiftwidth=2
+
+"""View line number off
+"set nonu
+"""View line number on
 set nu
+
+"""search highlight off
+"set hlsearch!
+"""search highlight on
+set hlsearch
