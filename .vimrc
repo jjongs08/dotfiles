@@ -43,6 +43,9 @@ let mapleader=","
 """key mapping
 nnoremap <Leader>t :NERDTreeToggle<CR>
 
+""" Ignore display in NERDTree
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
+
 "==============================
 " winresizer
 "==============================
