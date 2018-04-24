@@ -26,11 +26,16 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'cocopon/iceberg.vim'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'jimsei/winresizer.git'
+NeoBundle 'Yggdroot/indentLine.git'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'grep.vim'
 NeoBundle 'evidens/vim-twig'
 NeoBundle 'miyakogi/seiya.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 call neobundle#end()
 
 filetype plugin indent on
@@ -42,9 +47,6 @@ let mapleader=","
 
 """key mapping
 nnoremap <Leader>t :NERDTreeToggle<CR>
-
-""" Ignore display in NERDTree
-let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 
 "==============================
 " winresizer
@@ -112,13 +114,55 @@ set tabstop=2
 set autoindent
 set expandtab
 set shiftwidth=2
-
-"""View line number off
-"set nonu
-"""View line number on
 set nu
 
-"""search highlight off
-"set hlsearch!
-"""search highlight on
-set hlsearch
+"""indentLine
+"""let g:indentLine_enabled = 1
+let g:indentLine_color_term = 239
+let g:indentLine_char = '¦' "use ¦, ┆ or │
+
+"""neosnippet
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+"set snippet file dir
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets/,~/.vim/snippets'
+
+"""lightline
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [
+      \      [ 'mode', 'paste' ],
+      \      [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+      \    ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \   'gitbranch': 'fugitive#head'
+      \ },
+    \ }
+
+function! LightlineFilename()
+"  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let filename = expand('%') !=# '' ? expand('%') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+"show statusbar
+set laststatus=2
