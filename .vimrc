@@ -10,8 +10,6 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 call neobundle#end()
 
-filetype plugin indent on     " Required!
-
 " Installation check.
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
@@ -28,7 +26,7 @@ NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'cocopon/iceberg.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'jimsei/winresizer.git'
-NeoBundle 'Yggdroot/indentLine.git'
+NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'grep.vim'
 NeoBundle 'evidens/vim-twig'
