@@ -34,6 +34,7 @@ NeoBundle 'miyakogi/seiya.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'fatih/vim-go'
 call neobundle#end()
 
 filetype plugin indent on
