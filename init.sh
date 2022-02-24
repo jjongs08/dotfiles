@@ -53,9 +53,6 @@ for ((i = 0; i <= max_index; i++)); do
   echo "Setting of $setting_file is completed.\n"
 done
 
-echo "execute source ~/.bashrc"
-source ~/.bashrc
-
 if [ $OS == 'Mac' ]; then
   echo "brew update.\n"
   brew update
