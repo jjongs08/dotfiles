@@ -1,3 +1,6 @@
+# see
+https://support.apple.com/ja-jp/HT208050
+
 # setup
 ```
 git clone https://github.com/jjongs08/dotfiles.git ~/dotfiles
